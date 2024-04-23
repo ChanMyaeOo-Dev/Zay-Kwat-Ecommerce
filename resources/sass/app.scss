@@ -1,0 +1,288 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Bootstrap Icons
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@import "datatables.net-bs5/css/dataTables.bootstrap5.css";
+
+@import "@glidejs/glide/src/assets/sass/glide.core.scss";
+@import "@glidejs/glide/src/assets/sass/glide.theme.scss";
+@import "star-rating.js/dist/star-rating.css";
+
+* {
+    font-family: "Inter", sans-serif;
+}
+.swal2-container {
+    z-index: 20000 !important;
+}
+.cart_qty_input {
+    width: 60px;
+    background-color: #ffffff;
+}
+.cart_qty_input:focus-visible {
+    outline: none !important;
+}
+
+.front_end_navbar {
+    height: 70px !important;
+    z-index: 3036 !important;
+}
+.app_logo_expend {
+    height: 50px;
+}
+
+.shop_item_container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-column-gap: 18px;
+    grid-row-gap: 18px;
+}
+
+.glide__arrow {
+    color: #212121 !important;
+}
+
+.btn-primary {
+    color: #ffffff !important;
+}
+
+.nav_active {
+    background: #0d6dfd20;
+    border-radius: 6px;
+    color: #0d6efd;
+    border-left: 4px solid #0d6efd !important;
+}
+
+.dropdown-menu {
+    .dropdown-item {
+        background: #0d6dfd20;
+        border-radius: 6px;
+        color: #0d6efd;
+    }
+}
+.btn_menu {
+    transition: 400ms !important;
+}
+.btn_menu:hover {
+    background: #0d6efd10;
+    border-radius: 6px;
+    color: #0d6efd;
+}
+
+.btn_action {
+    width: 45px;
+    height: 45px;
+}
+
+.search_input:focus {
+    box-shadow: none !important;
+    border: 1px solid #00000020;
+}
+table {
+    td,
+    th {
+        background-color: #ffffff !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        border-top: 1px solid #00000020 !important;
+        vertical-align: middle !important;
+    }
+}
+
+.img_box {
+    width: 100px;
+    height: 100px;
+    position: relative;
+
+    .img_delete_btn {
+        background-color: #00000045;
+        border-radius: 100%;
+        color: #ffffff;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: none !important;
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 5px;
+    }
+}
+
+.img_delete_btn:hover {
+    background-color: #0d6efd;
+}
+
+// rating
+
+/* style.css */
+
+.star {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.one {
+    color: rgb(255, 0, 0);
+}
+
+.two {
+    color: rgb(255, 106, 0);
+}
+
+.three {
+    color: #f59e0b;
+}
+
+.four {
+    color: #fbbf24;
+}
+
+.five {
+    color: rgb(24, 159, 14);
+}
+
+// Tab Layout Start
+
+/**
+ * Responsive Bootstrap Tabs by @hayatbiralem
+ * 15 May 2015
+ */
+
+@mixin ellipsis() {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 100%;
+}
+
+@mixin icon-styles() {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
+}
+
+@media screen and (max-width: 479px) {
+    .nav-tabs-responsive {
+        > li {
+            display: none;
+            width: 23%;
+            > a {
+                @include ellipsis();
+                width: 100%;
+                text-align: center;
+                vertical-align: top;
+            }
+            &.active {
+                width: 54%;
+                &:first-child {
+                    margin-left: 23%;
+                }
+            }
+            &.active,
+            &.prev,
+            &.next {
+                display: block;
+            }
+            &.prev,
+            &.next {
+                -webkit-transform: scale(0.9);
+                transform: scale(0.9);
+            }
+            &.next > a,
+            &.prev > a {
+                -webkit-transition: none;
+                transition: none;
+                .text {
+                    display: none;
+                }
+                &:after,
+                &:after {
+                    @include icon-styles();
+                }
+            }
+            &.prev > a:after {
+                content: "\e079";
+            }
+            &.next > a:after {
+                content: "\e080";
+            }
+            &.dropdown {
+                > a > .caret {
+                    display: none;
+                }
+                > a:after {
+                    content: "\e114";
+                }
+                &.active > a {
+                    &:after {
+                        display: none;
+                    }
+                    > .caret {
+                        display: inline-block;
+                    }
+                }
+
+                .dropdown-menu {
+                    &.pull-xs-left {
+                        left: 0;
+                        right: auto;
+                    }
+                    &.pull-xs-center {
+                        right: auto;
+                        left: 50%;
+                        @include transform(translateX(-50%));
+                    }
+                    &.pull-xs-right {
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Demo Styles
+ */
+
+.wrapper {
+    padding: 15px 0;
+}
+
+.bs-example-tabs .nav-tabs {
+    margin-bottom: 15px;
+}
+
+@media (max-width: 479px) {
+    #narrow-browser-alert {
+        display: none;
+    }
+}
+
+// Tab Layout End
