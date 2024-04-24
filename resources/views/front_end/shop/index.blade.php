@@ -20,7 +20,8 @@
 
                                     @foreach ($get_6_products as $product)
                                         <div class="mb-3 pb-3 border-bottom">
-                                            <a href="#" class="text-secondary text-decoration-none">
+                                            <a href="{{ route('shop.show', $product->id) }}"
+                                                class="text-secondary text-decoration-none">
                                                 <div class="d-flex align-items-center">
                                                     <img src="{{ asset('storage/' . $product->feature_image) }}"
                                                         width="24px" height="24px" class="rounded me-3">
@@ -32,18 +33,6 @@
                                             </a>
                                         </div>
                                     @endforeach
-
-                                    {{-- <div class="mb-3 pb-3 border-bottom">
-                                        <a href="#" class="text-secondary text-decoration-none">
-                                            <div class="d-flex align-items-center">
-                                                <img src="{{ asset('src_images/logo.png') }}" width="24px" height="24px"
-                                                    class="rounded me-3">
-                                                <p class="mb-0 text-secondary me-auto">Category One</p>
-                                                <i class="bi bi-chevron-right"></i>
-                                            </div>
-                                        </a>
-                                    </div> --}}
-
                                 </div>
 
                                 <a href="#" class="btn btn-primary w-100">

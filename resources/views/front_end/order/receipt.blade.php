@@ -52,7 +52,6 @@
                         </div>
 
                         <p class="mb-3 text-dark fw-bold fs-5 ps-2">Order Details</p>
-                        {{-- {{ dd($orderProducts) }} --}}
                         @foreach ($orderProducts as $product)
                             <div class="card border-0 border-bottom mb-3">
                                 <div class="card-body">

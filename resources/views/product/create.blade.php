@@ -98,6 +98,68 @@
                             </div>
 
                         </div>
+
+                        <div class="card border-0 bg-white shadow mt-3">
+                            <div class="card-body p-4">
+
+                                <p class="mb-0 fs-5 text-black-50">
+                                    Keywords
+                                </p>
+                                <p class="fs-6 text-black-50 mb-4">Add at least three keywords about product</p>
+
+                                <div class="mb-3">
+                                    <label for="keywords_1" class="form-label">First Keyword</label>
+                                    <input form="product_add_form" type="text"
+                                        class="form-control
+                                        @error('keywords_1')
+                                        is-invalid
+                                        @enderror"
+                                        value="{{ old('keywords_1') }}" id="keywords_1" name="keywords_1"
+                                        placeholder="First Keyword">
+                                    <div class=" invalid-feedback">
+                                        @error('keywords_1')
+                                            {{ $message }}
+                                        @enderror"
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="keywords_2" class="form-label">Second Keyword</label>
+                                    <input form="product_add_form" type="text"
+                                        class="form-control
+                                        @error('keywords_2')
+                                        is-invalid
+                                        @enderror"
+                                        value="{{ old('keywords_2') }}" id="keywords_2" name="keywords_2"
+                                        placeholder="First Keyword">
+                                    <div class=" invalid-feedback">
+                                        @error('keywords_2')
+                                            {{ $message }}
+                                        @enderror"
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="keywords_3" class="form-label">Third Keyword</label>
+                                    <input form="product_add_form" type="text"
+                                        class="form-control
+                                        @error('keywords_3')
+                                        is-invalid
+                                        @enderror"
+                                        value="{{ old('keywords_3') }}" id="keywords_3" name="keywords_3"
+                                        placeholder="First Keyword">
+                                    <div class=" invalid-feedback">
+                                        @error('keywords_3')
+                                            {{ $message }}
+                                        @enderror"
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
                     </div>
 
                     {{-- Pricing --}}

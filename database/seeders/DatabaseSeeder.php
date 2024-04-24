@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -37,12 +36,10 @@ class DatabaseSeeder extends Seeder
             // 'role' => 'admin'
         ]);
 
-
-        // Category::factory(10)->create();
         $this->call([CategorySeeder::class]);
         Brand::factory(10)->create();
         Product::factory(20)->create();
-
+        $this->call([KeywordSeeder::class]);
 
         // $photos = Storage::allFiles("public");
         // array_shift($photos);

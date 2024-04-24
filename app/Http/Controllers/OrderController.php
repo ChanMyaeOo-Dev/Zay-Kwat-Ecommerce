@@ -77,10 +77,6 @@ class OrderController extends Controller
         Cart::where("user_id", Auth::id())->orderBy("id", "desc")->delete();
         $carts = Cart::where("user_id", Auth::id())->orderBy("id", "desc")->get();
 
-
-        //Receipt Informations
-        //menus,delivery informations,
-
         return view('front_end.order.receipt', compact('orderProducts', 'customer', 'order', "carts"));
     }
 

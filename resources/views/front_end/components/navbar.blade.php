@@ -23,13 +23,10 @@
             </ul>
 
             <div class="d-flex align-items-center">
-                <form class="d-flex mb-0" role="search">
-                    <input class="search_input form-control me-2" type="search" placeholder="Search"
-                        aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
+                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
+                    data-bs-target="#searchModal">
+                    <i class="bi bi-search"></i>
+                </button>
             </div>
 
             <!-- Right Side Of Navbar -->
@@ -88,3 +85,143 @@
         </div>
     </div>
 </nav>
+<!--Search Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="searchModalLabel">Search Products</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4" style="height: 650px;">
+                <div class="container">
+                    <h1 class="mt-4">Search Products</h1>
+
+                    <form id="searchForm" class="mt-4">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="category_id">Category:</label>
+                                    <input type="text" class="form-control" id="category_id" name="category_id">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="brand_id">Brand:</label>
+                                    <input type="text" class="form-control" id="brand_id" name="brand_id">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="keywords">Keywords (comma-separated):</label>
+                                    <input type="text" class="form-control" id="keywords" name="keywords">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="searchResults" class="mt-4">
+                        <!-- Search results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    // Submit form using Axios
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+
+        axios.get('/products/search', {
+                params: Object.fromEntries(formData.entries())
+            })
+            .then(function(response) {
+                const products = response.data;
+                let html = '<h2>Search Results</h2>';
+                html += '<ul class="list-group">';
+                products.forEach(function(product) {
+                    html += '<li class="list-group-item">' + product.name + ' - ' + product.category
+                        .name + '</li>'; // Assuming category relationship exists
+                });
+                html += '</ul>';
+                document.getElementById('searchResults').innerHTML = html;
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+    });
+</script>
+
+
+
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const suggestions = document.getElementById('suggestions');
+
+        searchInput.addEventListener('input', function(event) {
+            const inputValue = event.target.value.trim();
+
+            if (inputValue === '') {
+                suggestions.innerHTML = '';
+                suggestions.classList.remove('show');
+                return;
+            }
+
+            axios.get(`/products/search?query=${inputValue}`)
+                .then(response => {
+                    const products = response.data;
+                    // Clear previous suggestions
+                    suggestions.innerHTML = '';
+                    products.forEach(product => {
+                        const a = document.createElement('a');
+                        var baseUrl = "{{ route('products', '') }}";
+                        a.href = baseUrl + '/' + product.id;
+                        a.classList.add('text-decoration-none', 'text-dark');
+
+                        const div = document.createElement('div');
+                        div.classList.add('d-flex', 'align-items-center', 'gap-2', 'mb-3');
+
+                        const img = document.createElement('img');
+                        img.src = '{{ asset('storage/') }}' + '/' + product.feature_image;
+                        img.classList.add('search_product_img', 'rounded');
+
+                        const titleSpan = document.createElement('span');
+                        titleSpan.textContent = product.title;
+                        titleSpan.classList.add('text-dark');
+
+                        div.appendChild(img);
+                        div.appendChild(titleSpan);
+                        a.appendChild(div);
+                        suggestions.appendChild(a);
+                    });
+
+                    suggestions.classList.add('show');
+                })
+                .catch(error => {
+                    console.error('Error fetching products:', error);
+                });
+        });
+
+        // Hide suggestions when clicking outside the dropdown menu
+        document.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-toggle')) {
+                suggestions.classList.remove('show');
+            }
+        });
+    });
+</script> --}}
