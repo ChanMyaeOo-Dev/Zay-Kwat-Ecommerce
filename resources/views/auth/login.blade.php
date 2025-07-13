@@ -41,7 +41,7 @@
                                     @endif
                                 </div>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    id="password" placeholder="***" name="password" value="{{ old('password') }}" required
+                                    id="password" placeholder="***" name="password" value="{{ old('password') }}"
                                     autocomplete="current-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

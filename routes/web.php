@@ -17,7 +17,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\UMSController::class, 'index'])->name('ums');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth', 'auth.admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('/category', CategoryController::class);
     Route::resource('/product', ProductController::class);
     Route::resource('/photos', PhotoController::class);
